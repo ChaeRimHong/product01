@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="top::menu"></div>
+<style>
+  th{
+  text-align: center;
+  width: 100px;
+  vertical-align: middle;
+  font-size: 18px;
+  }
+  td{
+  text-align: center;
+  vertical-align: middle;
+  width: 300px;
+  }
+
+
+</style>
+<body>
+<br>
+<h2 align="center">가계부</h2>
+<div class="container mt-3">
+    <form method="post" action="in_save">
+        <table class="table table-hover">
+            <tr>
+                <th>No</th>
+                <th>상품명</th>
+                <th>총액</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th></th>
+            </tr>
+            <tr th:each="pd,state : ${list}">
+                <td th:text="${pd.id}"></td>
+                <td>
+                    <a th:href="@{/detail(id=${pd.id})}">
+                        <div th:text="${pd.name}"></div>
+                    </a>
+                </td>
+                <td th:text="${#numbers.formatInteger(pd.cost,0,'COMMA')+'원'}"></td>
+                <td th:text="${pd.writeday}"></td>
+                <td th:text="${pd.readcnt}"></td>
+
+                <td colspan="2">
+                    <a th:href="@{/modify(id=${pd.id})}" type="button" class="btn btn-light">수정</a>
+                    <a th:href="@{/delete(id=${pd.id})}" type="button" class="btn btn-light">삭제</a>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+
+</html>

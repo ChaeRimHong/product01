@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="top::menu"></div>
+<style>
+  th{
+  text-align: center;
+  width: 100px;
+  vertical-align: middle;
+  font-size: 18px;
+  }
+  td{
+  text-align: center;
+  width: 300px;
+  }
+  p{
+    color:red;
+    }
+
+</style>
+<body>
+<br>
+<h2 align="center">가계부 입력</h2>
+<div class="container mt-3">
+    <form method="post" modelAttribute="pd" th:object="${pd}" action="in_save">
+        <table class="table table-hover">
+            <tr>
+                <th>상품명</th>
+                <td>
+                    <input type="text" name="name" class="form-control mt-3" placeholder="name of product"
+                           th:field="*{name}">
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>수량</th>
+                <td>
+                    <input type="text" name="count" class="form-control mt-3" placeholder="count of product"
+                           th:field="*{count}">
+                    <p th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>단가</th>
+                <td>
+                    <input type="text" name="price" class="form-control mt-3" placeholder="price of product"
+                           th:field="*{price}">
+                    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                </td>
+            </tr>
+            <tr>
+                <th>사용처</th>
+                <td>
+                    <select class="form-select" id="market" name="market">
+                        <option>==아래 선택하기==</option>
+                        <option>롯데마트</option>
+                        <option>노브랜드</option>
+                        <option>다이소</option>
+                        <option>홈플러스</option>
+                        <option>코스트코</option>
+                        <option>기타</option>
+                    </select>
+                    <!--
+                    <input type="text" name="market" class="form-control mt-3" placeholder="price of product" th:field="*{market}">
+                    <p th:if="${#fields.hasErrors('market')}" th:errors="*{market}"></p>
+                    -->
+                </td>
+            </tr>
+            <tr>
+                <th>분류</th>
+                <td>
+                    <select class="form-select" id="category" name="category">
+                        <option>==아래 선택하기==</option>
+                        <option>식비</option>
+                        <option>간식비</option>
+                        <option>의류,화장품</option>
+                        <option>하루 용품</option>
+                        <option>생활 용품</option>
+                        <option>기타</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-light">입력</button>
+                    <button type="reset" class="btn btn-light">취소</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+
+</html>
