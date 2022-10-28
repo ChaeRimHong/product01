@@ -17,3 +17,6 @@ CREATE TABLE product(
     
 create SEQUENCE product_seq;
 ```
+
+>깃허브 마크다운 
+>https://gist.github.com/ihoneymon/652be052a0727ad59601
