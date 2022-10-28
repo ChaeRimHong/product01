@@ -14,7 +14,7 @@ CREATE TABLE product(
     category VARCHAR2(100),
     readcnt INTEGER,
     writeday date DEFAULT sysdate 
-    update date DEFAULT sysdate );
+    updateday date DEFAULT sysdate );
     
 create SEQUENCE product_seq;
 ```
