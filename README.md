@@ -13,7 +13,8 @@ CREATE TABLE product(
     market VARCHAR2(100),
     category VARCHAR2(100),
     readcnt INTEGER,
-    writeday date DEFAULT sysdate );
+    writeday date DEFAULT sysdate 
+    update date DEFAULT sysdate );
     
 create SEQUENCE product_seq;
 ```
