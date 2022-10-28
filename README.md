@@ -3,7 +3,7 @@
 SpringBoot로 가계부(게시판)만들기
 
 DB
-"```"
+```
 CREATE TABLE product(
     id INTEGER not null PRIMARY key,
     name VARCHAR2(100) NOT NULL,
@@ -16,4 +16,4 @@ CREATE TABLE product(
     writeday date DEFAULT sysdate );
     
 create SEQUENCE product_seq;
-"```"
+```
