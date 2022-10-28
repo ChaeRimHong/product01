@@ -50,4 +50,7 @@ public class ProductEntity {
 
     @Column
     LocalDate writeday;
+
+    @Column
+    LocalDate updateday;
 }

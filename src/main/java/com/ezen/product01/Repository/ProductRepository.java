@@ -1,6 +1,8 @@
 package com.ezen.product01.Repository;
 
 import com.ezen.product01.Entity.ProductEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,4 +30,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     @Modifying
     @Query(value = "update product set readcnt = readcnt +1 where product.id = :id", nativeQuery = true )
     int updateReadcnt(@Param("id") Long id);
+
+
+    //Page<ProductEntity> findAll(Pageable pageable);
+
+
+
 }

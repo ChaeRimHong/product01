@@ -37,9 +37,24 @@ public class Product {
 
     LocalDate writeday;
 
+    LocalDate updateday;
     public ProductEntity toEntity() {
-        return new ProductEntity(id, name, count, price, cost, market, category, readcnt, writeday);
+        return new ProductEntity(id, name, count, price, cost, market, category, readcnt, writeday, updateday);
     }
 
+/*
+    CREATE TABLE product(
+    id INTEGER not null PRIMARY key,
+    name VARCHAR2(100) NOT NULL,
+    count INTEGER not null,
+    price INTEGER not null,
+    cost INTEGER not null,
+    market VARCHAR2(100),
+    category VARCHAR2(100),
+    readcnt INTEGER,
+    writeday date DEFAULT sysdate );
 
+    create SEQUENCE product_seq;
+
+ */
 }

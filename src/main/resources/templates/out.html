@@ -16,6 +16,8 @@
   }
 
 
+
+
 </style>
 <body>
 <br>
@@ -50,6 +52,38 @@
             </tr>
         </table>
     </form>
+</div>
+
+<div class="container mt-3">
+    <ul class="pagination justify-content-center">
+        <li th:each="page : ${#numbers.sequence(0, totalPage - 1)}" class="page-item">
+            <a th:href="@{out(page=${pageStat.index})}" th:text="${pageStat.index + 1}" class="page-link"></a>
+        </li>
+
+        <!--
+        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
+            <li class="page-item">
+                <a th:if="${page != nowPage}"
+                   th:href="@{/output(page = ${page - 1})}"
+                   th:text="${page}+' '" class="page-link">
+                </a>
+                -->
+                <!--
+                위에거 원본
+                <a th:if="${page != nowPage}"
+                   th:href="@{/output(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}"
+                   th:text="${page}+' '" class="page-link">
+                </a>
+                -->
+        <!--
+                <strong th:if="${page == nowPage}"
+                        th:text="${page}" style="color : red">
+                </strong>
+            </li>
+
+        </th:block>
+        -->
+    </ul>
 </div>
 </body>
 
