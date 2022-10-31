@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="top::menu"></div>
+<style>
+  th{
+  text-align: center;
+  width: 100px;
+  vertical-align: middle;
+  font-size: 18px;
+  }
+  td{
+  text-align: center;
+  vertical-align: middle;
+  width: 300px;
+  }
+
+
+
+
+
+
+</style>
+<body>
+<br>
+
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-sm-4 p-3">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title">John Doe</h4>
+                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                    <a href="#" class="btn btn-primary">See Profile</a>
+                </div>
+            </div>
+            <div class="col-sm-4 p-3">
+                <div class="col-sm-4 p-3">
+                    <div class="card" style="width:400px">
+                        <img class="card-img-top" src="../bootstrap4/img_avatar1.png" alt="Card image"
+                             style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title">John Doe</h4>
+                            <p class="card-text">Some example text some example text. John Doe is an architect and
+                                engineer</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-4 p-3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2 align="center">파일출력</h2>
+    <div class="container mt-3">
+        <form method="post" action="in_save">
+            <table class="table table-hover">
+                <tr>
+                    <th>No</th>
+                    <th>파일경로</th>
+                    <th>파일</th>
+                    <th>파일명</th>
+                    <th></th>
+                </tr>
+                <tr th:each="ff,state : ${list}">
+                    <td th:text="${ff.fileid}"></td>
+                    <td th:text="${ff.storefilename}"></td>
+                    <td>
+                        <img th:src="@{/image/}+${ff.uploadfilename}"/>
+                    </td>
+                    <td th:text="${ff.uploadfilename}"></td>
+
+                    <td colspan="2">
+                        <a th:href="@{/modify(id=${ff.fileid})}" type="button" class="btn btn-light">수정</a>
+                        <a th:href="@{/delete(id=${ff.fileid})}" type="button" class="btn btn-light">삭제</a>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="top::menu"></div>
+<style>
+  th{
+  text-align: center;
+  width: 100px;
+  vertical-align: middle;
+  font-size: 18px;
+  }
+  td{
+  text-align: center;
+  width: 300px;
+  }
+  p{
+    color:red;
+    }
+
+</style>
+<body>
+<br>
+<h2 align="center">파일 업로드</h2>
+<div class="container mt-3">
+        <form action="/up_save" method="post" enctype="multipart/form-data">
+            <table class="table table-hover">
+                <tr>
+                    <th>파일</th>
+                    <td>
+                        <input class="form-control form-control-sm"
+                               style="margin:0 auto; width: 20%"
+                               type="file" name="file" id="file">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-light">업로드</button>
+                        <button type="reset" class="btn btn-light">취소</button>
+                    </td>
+                </tr>
+        </form>
+</div>
+</body>
+
+</html>

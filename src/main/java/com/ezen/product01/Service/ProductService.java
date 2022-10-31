@@ -25,7 +25,7 @@ public interface ProductService {
 
   public int updateReadcnt(Long id);
 
-  Page<ProductEntity> list(Pageable pageable);
+  Page<ProductEntity> list(int page);
 
   Page<ProductEntity> SearchList(String searchKeyword, Pageable pageable);
 }

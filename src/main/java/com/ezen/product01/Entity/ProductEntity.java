@@ -52,5 +52,5 @@ public class ProductEntity {
     LocalDate writeday;
 
     @Column
-    LocalDate updateday;
+    String picture;
 }

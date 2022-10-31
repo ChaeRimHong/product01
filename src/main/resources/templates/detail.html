@@ -30,6 +30,7 @@
                 <th>사용처</th>
                 <th>분류</th>
                 <th>작성일</th>
+                <th>사진</th>
             </tr>
             <tr>
                 <td th:text="${name}"></td>
@@ -39,6 +40,9 @@
                 <td th:text="${market}"></td>
                 <td th:text="${category}"></td>
                 <td th:text="${writeday}"></td>
+                <td>
+                    <img th:src="@{/image/}+${picture}"  width="80" height="60">
+                </td>
             </tr>
         </table>
 </div>

@@ -4,6 +4,7 @@ import com.ezen.product01.Entity.ProductEntity;
 import com.ezen.product01.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -35,8 +36,8 @@ public class ProductServiceImp implements ProductService {
 
 
     @Override
-    public Page<ProductEntity> list(Pageable pageable) {
-        return pRepository.findAll(pageable);
+    public Page<ProductEntity> list(int page) {
+        return pRepository.findAll(PageRequest.of(page,5,Sort.by(Sort.Direction.DESC,"id")));
     }
 
     @Override

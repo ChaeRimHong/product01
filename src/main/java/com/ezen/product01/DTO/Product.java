@@ -37,9 +37,10 @@ public class Product {
 
     LocalDate writeday;
 
-    LocalDate updateday;
+
+    String picture;
     public ProductEntity toEntity() {
-        return new ProductEntity(id, name, count, price, cost, market, category, readcnt, writeday, updateday);
+        return new ProductEntity(id, name, count, price, cost, market, category, readcnt, writeday, picture);
     }
 
 /*

@@ -1,7 +1,10 @@
 package com.ezen.product01.Controller;
 
+import com.ezen.product01.DTO.File;
 import com.ezen.product01.DTO.Product;
+import com.ezen.product01.Entity.FileEntity;
 import com.ezen.product01.Entity.ProductEntity;
+import com.ezen.product01.Service.FileService;
 import com.ezen.product01.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,8 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -27,6 +33,9 @@ public class FrontController {
 
     @Autowired
     ProductService pService;
+
+    @Autowired
+    private FileService fService;
 
 
     @GetMapping("/main")
@@ -46,6 +55,7 @@ public class FrontController {
             return "in";
         }
         else{
+            pd.setWriteday(LocalDate.now());
             int cost=(pd.getPrice())*(pd.getCount());
             pd.setCost(cost);
             ProductEntity pEntity1=pd.toEntity();
@@ -63,6 +73,19 @@ public class FrontController {
     }
 */
 
+    @GetMapping(value = "/output")
+    public String out(Model model, @RequestParam(required = false,defaultValue ="0", value = "page") int page){
+        Page<ProductEntity> listPage = pService.list(page);
+        int totalPage = listPage.getTotalPages();
+        int nowpage = listPage.getPageable().getPageNumber()+1;//현재페이지
+        model.addAttribute("nowpage",nowpage);
+        model.addAttribute("list",listPage.getContent());
+        model.addAttribute("totalPage",totalPage);
+        List<ProductEntity> list = pService.out();
+        return "out";
+    }
+
+/*
     @GetMapping(value = "/output")
     public String ko3(Model mo, @PageableDefault(page = 0, size = 10, sort = "id",
                         direction = Sort.Direction.DESC) Pageable pageable, String searchKeyword)    {
@@ -120,6 +143,7 @@ public class FrontController {
 
     @GetMapping("modify")
     public String modify(@RequestParam("id") Long id, Model mo) {
+
         System.out.println("id number="+id);
         ProductEntity pEntity2=pService.modify(id);
         mo.addAttribute("id",pEntity2.getId());
@@ -133,7 +157,7 @@ public class FrontController {
     public String modSave(Product pd) {
         System.out.println("id number="+pd.getId());
         int cost=(pd.getPrice())*(pd.getCount());
-        GregorianCalendar gc= new GregorianCalendar();
+        pd.setWriteday(LocalDate.now());
         pd.setCost(cost);
         ProductEntity pEntity3=pd.toEntity();
         pService.mod(pEntity3);
@@ -154,8 +178,35 @@ public class FrontController {
             mo.addAttribute("market", pEntity4.getMarket());
             mo.addAttribute("category", pEntity4.getCategory());
             mo.addAttribute("writeday", pEntity4.getWriteday());
+            mo.addAttribute("picture", pEntity4.getPicture());
         }
 
         return "detail";
+    }
+
+    @GetMapping("file_upload")
+    public String file_upload() {
+        return "up";
+    }
+
+    @PostMapping("up_save")
+    public String upload_save(@RequestParam("file") MultipartFile mpf, com.ezen.product01.DTO.File file ) throws IOException {
+        if(!mpf.isEmpty()) {
+            String fullpath = "c:/springboot/product01/src/main/resources/static/image/"+mpf.getOriginalFilename();
+            System.out.println("파일저장fullpath : "+fullpath);
+            file.setStorefilename(fullpath);
+            System.out.println("mpf.getOriginalFilename()"+mpf.getOriginalFilename());
+            mpf.transferTo(new java.io.File(fullpath));
+            file.setUploadfilename(mpf.getOriginalFilename());
+            FileEntity fEntity1=file.toEntity();
+            fService.in(fEntity1);
+        }
+        return "redirect:/main";
+    }
+    @GetMapping("file_print")
+    public String file_print(Model mo) {
+        List<FileEntity> list = fService.file_out();
+        mo.addAttribute("list", list);
+        return "print";
     }
 }
