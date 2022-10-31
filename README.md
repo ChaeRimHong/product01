@@ -4,6 +4,7 @@ SpringBoot로 가계부(게시판)만들기
 
 DB
 ```
+<![CDATA[
 CREATE TABLE product(
     id INTEGER not null PRIMARY key,
     name VARCHAR2(100) NOT NULL,
@@ -17,6 +18,17 @@ CREATE TABLE product(
     updateday date DEFAULT sysdate );
     
 create SEQUENCE product_seq;
+]]>
+
+<![CDATA[
+CREATE TABLE file01(
+    fileid INTEGER not null PRIMARY key,
+    storefilename VARCHAR2(100) NOT NULL,
+    uploadfilename VARCHAR2(100) NOT NULL );
+    
+create SEQUENCE fileid_seq;
+
+]]>
 ```
 
 >깃허브 마크다운 
