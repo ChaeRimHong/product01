@@ -1,8 +1,10 @@
 package com.ezen.product01.Service;
 
+import com.ezen.product01.DTO.Product;
 import com.ezen.product01.Entity.ProductEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,5 +29,5 @@ public interface ProductService {
 
   Page<ProductEntity> list(int page);
 
-  Page<ProductEntity> SearchList(String searchKeyword, Pageable pageable);
+
 }

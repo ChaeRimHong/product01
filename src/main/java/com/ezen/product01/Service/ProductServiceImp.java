@@ -1,5 +1,6 @@
 package com.ezen.product01.Service;
 
+import com.ezen.product01.DTO.Product;
 import com.ezen.product01.Entity.ProductEntity;
 import com.ezen.product01.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,11 +41,6 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Page<ProductEntity> list(int page) {
         return pRepository.findAll(PageRequest.of(page,5,Sort.by(Sort.Direction.DESC,"id")));
-    }
-
-    @Override
-    public Page<ProductEntity> SearchList(String searchKeyword, Pageable pageable) {
-        return null;
     }
 
 

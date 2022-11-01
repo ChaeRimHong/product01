@@ -6,6 +6,7 @@ import com.ezen.product01.Entity.FileEntity;
 import com.ezen.product01.Entity.ProductEntity;
 import com.ezen.product01.Service.FileService;
 import com.ezen.product01.Service.ProductService;
+import com.ezen.product01.mapper.ServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
 
 @Controller
 public class FrontController {
@@ -36,6 +38,9 @@ public class FrontController {
 
     @Autowired
     private FileService fService;
+
+    @Autowired
+    SqlSession sqlSession;
 
 
     @GetMapping("/main")
@@ -84,6 +89,15 @@ public class FrontController {
         List<ProductEntity> list = pService.out();
         return "out";
     }
+    @PostMapping("search")
+    public String search(Model mo, @RequestParam("keyword") String keyword) {
+        ServiceMapper sm = sqlSession.getMapper(ServiceMapper.class);
+        List<ProductEntity> list = sm.search(keyword);
+        mo.addAttribute("list",list);
+
+        return "search";
+    }
+
 
 /*
     @GetMapping(value = "/output")
@@ -209,4 +223,6 @@ public class FrontController {
         mo.addAttribute("list", list);
         return "print";
     }
+
+
 }

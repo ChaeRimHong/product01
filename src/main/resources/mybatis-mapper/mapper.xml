@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ezen.product01.mapper.ServiceMapper">
+    <select id="search" resultType="com.ezen.product01.DTO.Product">
+        select * from product where name like '%' || #{param1} || '%'
+    </select>
+    <!--
+    <insert id="in">
+        insert into market values (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+    </insert>
+
+    <select id="out" resultType="com.ezen.market.DTO.Market">
+        select * from market
+    </select>
+
+    <select id="detail" resultType="com.ezen.market.DTO.Market">
+        select * from market where pname=#{param1}
+    </select>
+
+    <select id="mod_select" resultType="com.ezen.market.DTO.Market">
+        select * from market where pname=#{param1}
+    </select>
+
+    <delete id="del">
+        delete from market where pname=#{param1}
+    </delete>
+
+    <update id="mod_save">
+        update market
+        set
+        pimg = #{param2},
+        pd = #{param3},
+        pft = #{param4},
+        price = #{param5}
+        where pname=#{param1}
+    </update>
+
+
+    CREATE TABLE market (
+    pname varchar(255),
+    pimg varchar(900),
+    pd varchar(20),
+    pft varchar(600),
+    price number(30)
+    );
+    -->
+</mapper>

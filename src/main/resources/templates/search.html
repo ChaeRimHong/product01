@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="top::menu"></div>
+<style>
+  th{
+  text-align: center;
+  width: 100px;
+  vertical-align: middle;
+  font-size: 18px;
+  }
+  td{
+  text-align: center;
+  vertical-align: middle;
+  width: 300px;
+  }
+
+</style>
+<body>
+<br>
+<h2 align="center">검색 결과</h2>
+<div class="container mt-3">
+        <table class="table table-hover">
+            <tr>
+                <th>No</th>
+                <th>상품명</th>
+                <th>총액</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th></th>
+            </tr>
+            <tr th:each="ss,state : ${list}">
+                <td th:text="${ss.id}"></td>
+                <td>
+                    <a th:href="@{/detail(id=${ss.id})}">
+                        <div th:text="${ss.name}"></div>
+                    </a>
+                </td>
+                <td th:text="${#numbers.formatInteger(ss.cost,0,'COMMA')+'원'}"></td>
+                <td th:text="${ss.writeday}"></td>
+                <td th:text="${ss.readcnt}"></td>
+            </tr>
+        </table>
+</div>
+
+</body>
+
+</html>
