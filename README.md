@@ -3,7 +3,7 @@
 SpringBoot로 가계부(게시판)만들기
 
 //프로젝트 개요
-- https://docs.google.com/document/d/1d3hVYmBePPIEpAue3NcyP8CYCF3LTdBQ_N5SRccC974/edit?usp=sharing
+- https://docs.google.com/document/d/e/2PACX-1vSf-N71e0IgrD61I5yJXyrdtMgbdxpjBkDr1h3RGrAuPCqBQ_updmpSE2ByDtON4WJC11-Gu9zEYm0o/pub
 
 DB
 ```
